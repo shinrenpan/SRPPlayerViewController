@@ -11,7 +11,7 @@ iOS 8 Later
 
 僅在 iPhone 6 (iOS 8.1.1), iPad 3 (iOS 8.1.1) 測試過.
 
->使用 AirPlay 時, 在 iPad 3 上效能很差, 但是如果使用連接線播放就沒問題.
+>使用 AirPlay 時, 在 iPad 3 上效能很差, 但是如果使用連接線播放就沒問題.  
 >而在 iPhone 6 使用 AirPlay, 效果很好.
 
 ## 使用
