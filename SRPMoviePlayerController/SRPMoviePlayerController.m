@@ -25,6 +25,25 @@
 #import <MediaPlayer/MPVolumeView.h>
 #import <AVFoundation/AVFoundation.h>
 
+// 外接設備用的 ViewController
+@interface ConnectedController : UIViewController
+@end
+
+
+@implementation ConnectedController
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return ~UIInterfaceOrientationMaskAll;
+}
+
+@end
+
 
 @interface SRPMoviePlayerController ()
 <
@@ -33,9 +52,8 @@
 >
 
 @property (nonatomic, weak) IBOutlet UINavigationBar *navBar;   // 上方 NavigationBar
-@property (nonatomic, weak) IBOutlet UILabel *playTimeLabel;    // 播放時間 Label
 @property (nonatomic, weak) IBOutlet UISlider *videoSeekSlider; // 調整影片時間的 slider
-@property (nonatomic, weak) IBOutlet UILabel *endTimeLabel;     // 結束時間 Label
+@property (nonatomic, weak) IBOutlet UILabel *endTimeLabel;     // 影片結束時間
 @property (nonatomic, weak) IBOutlet UIView *playerView;        // 在 App 裡播放的 View
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *bufferView; // buffer 時的轉轉
 @property (nonatomic, weak) IBOutlet UILabel *connectLabel;     // 告知連結至外接設備 Label
@@ -44,7 +62,6 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *volumeContainer; // 調整聲音 Slider Container
 
 @property (nonatomic, assign) BOOL videoSeekSliderIsDragging; // videoSeekSlider 是否正在拖拉
-@property (nonatomic, assign) long prevPlayTime;              // 上一次播放的時間
 @property (nonatomic, assign) long totalVideoTime;            // 影片總時間
 @property (nonatomic, strong) CADisplayLink *timer;           // timer
 @property (nonatomic, strong) VMediaPlayer *player;           // 播放器
@@ -89,6 +106,11 @@
     [_player unSetupPlayer];
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+    
+    if([self __isConnected])
+    {
+        [self __didDisconnectScreen:nil];
+    }
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:
@@ -139,12 +161,8 @@
 - (IBAction)videoSeekSliderDragging:(UISlider *)sender
 {
     self.videoSeekSliderIsDragging = YES;
-    
-    long playTime = _totalVideoTime * sender.value;
-    long endTime  = _totalVideoTime - playTime;
-    
-    _playTimeLabel.text = [self __videoTimeToString:playTime];
-    _endTimeLabel.text  = [self __videoTimeToString:endTime];
+    long endTime                   = _totalVideoTime * (1.0- sender.value);
+    _endTimeLabel.text             = [self __videoTimeToString:endTime];
 }
 
 #pragma mark - videoSeekSlider 拖拉結束
@@ -158,20 +176,12 @@
 #pragma mark - VMediaPlayerDelegate
 - (void)mediaPlayer:(VMediaPlayer *)player didPrepared:(id)arg
 {
-    // 這是當影片切換至 app / TV 才會觸發
-    if(_prevPlayTime > 0.0)
-    {
-        [_player seekTo:_prevPlayTime];
-    }
-    else
-    {
-        [player start];
-        
-        _bufferView.hidden = YES;
-        _totalVideoTime    = [player getDuration];
-        
-        [self __startTimer];
-    }
+    [player start];
+    
+    _bufferView.hidden = YES;
+    _totalVideoTime    = [player getDuration];
+    
+    [self __startTimer];
 }
 
 - (void)mediaPlayer:(VMediaPlayer *)player playbackComplete:(id)arg
@@ -255,34 +265,15 @@
 {
     if(_videoURL)
     {
-        self.prevPlayTime = [_player getCurrentPosition] - 500;
+        [_player setupPlayerWithCarrierView:_playerView withDelegate:self];
+        [_player setDataSource:_videoURL];
+        [_player prepareAsync];
         
-        [_player pause];
-        [_player reset];
-        [_player unSetupPlayer];
-        
-        // 當連接外接設備時
         if([self __isConnected])
         {
-            UIScreen *screen     = [[UIScreen screens]lastObject];
-            _connectLabel.hidden = NO;
-            _playerWindow.frame  = screen.bounds;
-            _playerWindow.screen = screen;
-            _playerWindow.hidden = NO;
-            
-            [_player setupPlayerWithCarrierView:_playerWindow withDelegate:self];
+            UIScreen *screen = [[UIScreen screens]lastObject];
+            [self __handleConnectedScreen:screen];
         }
-        else
-        {
-            _connectLabel.hidden = YES;
-            _playerWindow.screen = nil;
-            _playerWindow.hidden = YES;
-            
-            [_player setupPlayerWithCarrierView:_playerView withDelegate:self];
-        }
-        
-        [_player setDataSource:_videoURL header:nil];
-        [_player prepareAsync];
     }
 }
 
@@ -331,12 +322,38 @@
 #pragma mark - 外接設備處理
 - (void)__didConnectScreen:(NSNotification *)sender
 {
-    [self __setupPlayer];
+    UIScreen *screen = sender.object;
+
+    [self __handleConnectedScreen:screen];
+}
+
+- (void)__handleConnectedScreen:(UIScreen *)screen
+{
+    _connectLabel.hidden = NO;
+    
+    screen.overscanCompensation = UIScreenOverscanCompensationInsetApplicationFrame;
+    
+    self.playerWindow = [[UIWindow alloc] initWithFrame:screen.bounds];
+    
+    UIViewController *controller = [[ConnectedController alloc]init];
+    _playerWindow.rootViewController = controller;
+    [controller.view addSubview:_playerView];
+    controller.view.frame = screen.bounds;
+    _playerView.frame = screen.bounds;
+    
+    _playerWindow.screen = screen;
+    _playerWindow.hidden = NO;
 }
 
 - (void)__didDisconnectScreen:(NSNotification *)sender
 {
-    [self __setupPlayer];
+    _connectLabel.hidden = YES;
+    [self.view addSubview:_playerView];
+    [self.view sendSubviewToBack:_playerView];
+    _playerView.frame = self.view.frame;
+    
+    _playerWindow.hidden = YES;
+    self.playerWindow = nil;
 }
 
 #pragma mark - 點擊畫面
@@ -387,11 +404,9 @@
     // 當 videoSeekSlider 拖拉時, 不變動 UI
     if(!_videoSeekSliderIsDragging)
     {
-        long playTime = [_player getCurrentPosition];
-        long endTime  = _totalVideoTime - playTime;
-        
-        _playTimeLabel.text = [self __videoTimeToString:playTime];
-        _endTimeLabel.text  = [self __videoTimeToString:endTime];
+        long playTime      = [_player getCurrentPosition];
+        long endTime       = _totalVideoTime - playTime;
+        _endTimeLabel.text = [self __videoTimeToString:endTime];
         
         [_videoSeekSlider setValue:(float)playTime / _totalVideoTime animated:NO];
     }
@@ -420,7 +435,7 @@
     min       = (toSeconds - hour * 3600) / 60;
     sec       = toSeconds - hour * 3600 - min * 60;
     
-    NSMutableString *string = [NSMutableString string];
+    NSMutableString *string = [NSMutableString stringWithFormat:@"-"];
     
     if(hour > 0)
     {
