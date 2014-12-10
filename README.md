@@ -38,10 +38,14 @@ mvc.videoURL = url;
 但是一進入播放器, 聲音的 route 會跑到耳機, 而且 google 後, 利用這個 category  
 可能會用 reject 風險, 所以目前的做法是傾向於讓 User 自己向上拖拉控制台切換 AirPlaye.
 
+`如果有解決播放器內切換 AirPlay 的做法, 歡迎告知.`
+
 ### 2. 為何不支援背景播放?
 
 因為背景時投射到 TV 的影像不會 Render, 所以我就不支援背景播放了, 如果是純聲音 (Radio App)  
-那就考慮使用背景播放跟 Remote Event 控制.
+那就考慮使用背景播放跟 Remote Event 控制
+
+`如果有解決可以在背景 Render 影片到 TV 的做法, 歡迎告知.`
 
 ### 其他問題請開 issue
 
