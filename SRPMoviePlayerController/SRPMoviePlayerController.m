@@ -25,6 +25,7 @@
 #import <MediaPlayer/MPVolumeView.h>
 #import <AVFoundation/AVFoundation.h>
 
+
 // 外接設備用的 ViewController
 @interface ConnectedController : UIViewController
 @end
@@ -130,7 +131,8 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
        shouldReceiveTouch:(UITouch *)touch
 {
-    // 一定要設 delegate, 不然拖拉影片或是聲音, 會不小心觸發 tap
+    // 一定要設 delegate, 不然拖拉影片或是聲音, 會不小心觸發 tap,
+    // 播放影片時的 View Class 為 GLVPlayerView
     return
     touch.view == self.view   ||
     touch.view == _playerView ||
@@ -161,7 +163,7 @@
 - (IBAction)videoSeekSliderDragging:(UISlider *)sender
 {
     self.videoSeekSliderIsDragging = YES;
-    long endTime                   = _totalVideoTime * (1.0- sender.value);
+    long endTime                   = _totalVideoTime * (1.0 - sender.value);
     _endTimeLabel.text             = [self __videoTimeToString:endTime];
 }
 
@@ -265,6 +267,9 @@
 {
     if(_videoURL)
     {
+        // see issue #1
+        //[[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+        
         [_player setupPlayerWithCarrierView:_playerView withDelegate:self];
         [_player setDataSource:_videoURL];
         [_player prepareAsync];
@@ -289,7 +294,8 @@
         MPVolumeView *volumeView = [[MPVolumeView alloc]initWithFrame:
                                     CGRectMake(0, 0, _volumeContainer.width, 18.0)];
         
-        volumeView.showsRouteButton = NO;
+        // see issue #1
+        //volumeView.showsRouteButton = NO;
         _volumeContainer.customView = volumeView;
     }
     else
@@ -305,11 +311,29 @@
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
+    // 連接設備
     [center addObserver:self selector:@selector(__didConnectScreen:)
                    name:UIScreenDidConnectNotification object:nil];
     
+    // 移除連接
     [center addObserver:self selector:@selector(__didDisconnectScreen:)
                    name:UIScreenDidDisconnectNotification object:nil];
+    
+    // 進入前景
+    [center addObserver:self selector:@selector(__appWillEnterForeground:)
+                   name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    // 進入背景
+    [center addObserver:self selector:@selector(__appDidEnterBackground:)
+                   name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
+    // 可能有電話進來時
+    [center addObserver:self selector:@selector(__handleInterruption:)
+                   name:AVAudioSessionInterruptionNotification object:nil];
+    
+    /* 切換 AirPlay 時的 Notification
+    [center addObserver:self selector:@selector(__handleRouteActive:)
+                   name:MPVolumeViewWirelessRouteActiveDidChangeNotification object:nil];*/
 }
 
 - (void)__removeObserver
@@ -329,32 +353,66 @@
 
 - (void)__handleConnectedScreen:(UIScreen *)screen
 {
-    _connectLabel.hidden = NO;
-    
-    screen.overscanCompensation = UIScreenOverscanCompensationInsetApplicationFrame;
-    
-    self.playerWindow = [[UIWindow alloc] initWithFrame:screen.bounds];
-    
-    UIViewController *controller = [[ConnectedController alloc]init];
+    _connectLabel.hidden             = NO;
+    screen.overscanCompensation      = UIScreenOverscanCompensationInsetApplicationFrame;
+    UIViewController *controller     = [[ConnectedController alloc]init];
     _playerWindow.rootViewController = controller;
-    [controller.view addSubview:_playerView];
-    controller.view.frame = screen.bounds;
-    _playerView.frame = screen.bounds;
     
-    _playerWindow.screen = screen;
-    _playerWindow.hidden = NO;
+    [controller.view addSubview:_playerView];
+    
+    controller.view.frame = screen.bounds;
+    _playerView.frame     = screen.bounds;
+    _playerWindow.screen  = screen;
+    _playerWindow.hidden  = NO;
 }
 
 - (void)__didDisconnectScreen:(NSNotification *)sender
 {
     _connectLabel.hidden = YES;
+    
     [self.view addSubview:_playerView];
     [self.view sendSubviewToBack:_playerView];
-    _playerView.frame = self.view.frame;
     
-    _playerWindow.hidden = YES;
-    self.playerWindow = nil;
+    _playerView.frame                = self.view.frame;
+    _playerWindow.hidden             = YES;
+    _playerWindow.rootViewController = nil;
 }
+
+#pragma mark - 進入 / 退出背景
+
+- (void)__appWillEnterForeground:(id)sender
+{
+    _timer.paused = NO;
+    [_player start];
+}
+
+- (void)__appDidEnterBackground:(id)sender
+{
+    // 進入背景時, TV out 上的畫面不會 Render, 就關掉 player 吧
+    _timer.paused = YES;
+    [_player pause];
+}
+
+#pragma mark - 聲音中斷 (maybe 有電話打進來)
+- (void)__handleInterruption:(NSNotification *)sender
+{
+    NSDictionary *info = sender.userInfo;
+    NSNumber *type = info[AVAudioSessionInterruptionTypeKey];
+    
+    // 只 handle begin, end 的話, 讓 User 手動去 play video
+    if([type integerValue] == AVAudioSessionInterruptionTypeBegan)
+    {
+        [_player pause];
+    }
+}
+
+/* see issue #1
+#pragma mark - 處理 User 切換 AirPlay
+- (void)__handleRouteActive:(NSNotification *)sender
+{
+    
+}
+*/
 
 #pragma mark - 點擊畫面
 - (void)__tapHandle:(id)sender
