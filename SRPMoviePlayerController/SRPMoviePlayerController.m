@@ -295,7 +295,7 @@
                                     CGRectMake(0, 0, _volumeContainer.width, 18.0)];
         
         // see issue #1
-        //volumeView.showsRouteButton = NO;
+        volumeView.showsRouteButton = NO;
         _volumeContainer.customView = volumeView;
     }
     else
