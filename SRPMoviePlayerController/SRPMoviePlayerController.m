@@ -212,16 +212,13 @@
 
 - (void)mediaPlayer:(VMediaPlayer *)player setupManagerPreference:(id)arg
 {
-    player.decodingSchemeHint       = VMDecodingSchemeSoftware;
+    player.decodingSchemeHint       = VMDecodingSchemeHardware;
     player.autoSwitchDecodingScheme = NO;
 }
 
 - (void)mediaPlayer:(VMediaPlayer *)player setupPlayerPreference:(id)arg
 {
     player.useCache = YES;
-    
-    [player setBufferSize:1024*1024];
-    [player setVideoQuality:VMVideoQualityLow];
     [player setCacheDirectory:[self __cacheDirectory]];
 }
 
