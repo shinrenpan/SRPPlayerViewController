@@ -1,104 +1,151 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SRPMoviePlayerController">
             <connections>
-                <outlet property="bufferView" destination="jIb-LB-Rkr" id="qUc-vJ-qgy"/>
-                <outlet property="connectLabel" destination="6Rt-lS-IkH" id="iFM-xU-AS5"/>
-                <outlet property="endTimeLabel" destination="pqU-9L-Qxy" id="rg5-qX-LIU"/>
-                <outlet property="navBar" destination="Kuu-bq-Jv2" id="clk-1c-x71"/>
-                <outlet property="playPauseItem" destination="nuh-bL-RDf" id="cXy-hw-epg"/>
-                <outlet property="playerView" destination="t3f-f3-VUT" id="Ub3-fm-Ecg"/>
-                <outlet property="toolbar" destination="CdS-kn-qHn" id="een-HS-HIf"/>
-                <outlet property="videoSeekSlider" destination="1rI-Yn-0xL" id="drl-aB-wqu"/>
+                <outlet property="connectedLabel" destination="aED-aJ-hd6" id="wKy-Az-8Pw"/>
+                <outlet property="endTimeLabel" destination="L69-aj-K1Q" id="qAq-cN-VCx"/>
+                <outlet property="loadingLabel" destination="K92-fX-2WK" id="Y7u-AS-D3K"/>
+                <outlet property="loadingView" destination="hmk-gh-kD5" id="Y5L-Vx-v7b"/>
+                <outlet property="playPauseItem" destination="TcB-jY-mfs" id="NLj-Ot-r0a"/>
+                <outlet property="playTimeLabel" destination="B17-Ez-FqM" id="ztm-1s-zZD"/>
+                <outlet property="toolView" destination="Dk1-Om-f0j" id="74H-qT-FVo"/>
+                <outlet property="videoSeekSlider" destination="G54-i3-sFF" id="Tgn-Cm-bhL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="volumeContainer" destination="EgA-7k-h8n" id="wYQ-fA-PYc"/>
+                <outlet property="volumeContainer" destination="AiL-Fq-Ske" id="kfz-ym-a3Y"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="t3f-f3-VUT" userLabel="_playerView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
-                <navigationBar contentMode="scaleToFill" id="Kuu-bq-Jv2" userLabel="_navBar">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <items>
-                        <navigationItem id="90X-Ei-jaI">
-                            <nil key="title"/>
-                            <barButtonItem key="leftBarButtonItem" title="Done" id="5Cv-bK-46s">
-                                <connections>
-                                    <action selector="doneItemDidClicked:" destination="-1" id="cF2-vs-bYG"/>
-                                </connections>
-                            </barButtonItem>
-                            <view key="titleView" contentMode="scaleToFill" id="lcx-3E-k7t">
-                                <rect key="frame" x="55" y="20" width="257" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" id="1rI-Yn-0xL" userLabel="_videoSeekSlider">
-                                        <rect key="frame" x="0.0" y="7" width="206" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <action selector="videoSeekSliderDragging:" destination="-1" eventType="touchDragInside" id="Ki7-KJ-khS"/>
-                                            <action selector="videoSeekSliderValueDidChanged:" destination="-1" eventType="valueChanged" id="eGu-fb-spm"/>
-                                        </connections>
-                                    </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pqU-9L-Qxy" userLabel="_endTimeLabel">
-                                        <rect key="frame" x="207" y="7" width="50" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </view>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CdS-kn-qHn" userLabel="_toolbar">
-                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <items>
-                        <barButtonItem title="▶︎" width="22" id="nuh-bL-RDf" userLabel="_playPauseItem">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="playPauseItemDidClicked:" destination="-1" id="i6a-Lc-8nF"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="i0e-Kg-y8E"/>
-                        <barButtonItem title="Item" width="320" id="EgA-7k-h8n" userLabel="_volumeContainer"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="EEK-DX-g8l"/>
-                        <barButtonItem enabled="NO" title="🔊" width="22" id="g0O-RQ-Gsz"/>
-                    </items>
-                </toolbar>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected to TV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Rt-lS-IkH" userLabel="_connectLabel">
-                    <rect key="frame" x="44" y="266" width="232" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TV Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aED-aJ-hd6" userLabel="_connectedLabel">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="jIb-LB-Rkr" userLabel="_bufferView">
-                    <rect key="frame" x="142" y="266" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dk1-Om-f0j" userLabel="_toolView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCj-tP-AcC">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="c9z-1u-CKH"/>
+                            </constraints>
+                            <items>
+                                <navigationItem id="pcz-uu-6Xu">
+                                    <nil key="title"/>
+                                    <barButtonItem key="leftBarButtonItem" title="Done" id="pY5-cL-HTC">
+                                        <connections>
+                                            <action selector="doneItemDidClicked:" destination="-1" id="X5m-a9-0hc"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <view key="titleView" contentMode="scaleToFill" id="I16-EX-w6w">
+                                        <rect key="frame" x="63" y="18" width="521" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B17-Ez-FqM" userLabel="_playTimeLabel">
+                                                <rect key="frame" x="4" y="16" width="24" height="15"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G54-i3-sFF" userLabel="_videoTimeSlider">
+                                                <rect key="frame" x="30" y="9" width="461" height="31"/>
+                                                <connections>
+                                                    <action selector="videoSeekSliderDragging:" destination="-1" eventType="touchDragInside" id="ara-UB-OLX"/>
+                                                    <action selector="videoSeekSliderValueDidChanged:" destination="-1" eventType="valueChanged" id="byj-p0-2TV"/>
+                                                </connections>
+                                            </slider>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hmk-gh-kD5" userLabel="_loadingView">
+                                                <rect key="frame" x="194" y="14" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K92-fX-2WK" userLabel="_loadingLabel">
+                                                <rect key="frame" x="222" y="13" width="77" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L69-aj-K1Q" userLabel="_endTimeLabel">
+                                                <rect key="frame" x="493" y="16" width="24" height="15"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="K92-fX-2WK" firstAttribute="leading" secondItem="hmk-gh-kD5" secondAttribute="trailing" constant="8" id="12E-4o-oga"/>
+                                            <constraint firstAttribute="trailing" secondItem="L69-aj-K1Q" secondAttribute="trailing" constant="4" id="60v-Oc-YJB"/>
+                                            <constraint firstAttribute="centerX" secondItem="K92-fX-2WK" secondAttribute="centerX" id="6Mw-Mz-d6q"/>
+                                            <constraint firstAttribute="centerY" secondItem="B17-Ez-FqM" secondAttribute="centerY" id="6rh-QC-jNa"/>
+                                            <constraint firstItem="G54-i3-sFF" firstAttribute="trailing" secondItem="L69-aj-K1Q" secondAttribute="leading" constant="-4" id="CCc-Fw-F93"/>
+                                            <constraint firstItem="G54-i3-sFF" firstAttribute="leading" secondItem="B17-Ez-FqM" secondAttribute="trailing" constant="4" id="DPs-5g-smM"/>
+                                            <constraint firstAttribute="centerY" secondItem="L69-aj-K1Q" secondAttribute="centerY" id="FcD-XJ-vSd"/>
+                                            <constraint firstAttribute="centerY" secondItem="K92-fX-2WK" secondAttribute="centerY" id="bFj-VY-7gl"/>
+                                            <constraint firstAttribute="centerY" secondItem="G54-i3-sFF" secondAttribute="centerY" id="eNa-YL-0eO"/>
+                                            <constraint firstAttribute="centerY" secondItem="hmk-gh-kD5" secondAttribute="centerY" id="gnc-G3-Zb6"/>
+                                            <constraint firstItem="B17-Ez-FqM" firstAttribute="leading" secondItem="I16-EX-w6w" secondAttribute="leading" constant="4" id="yOg-9J-LGn"/>
+                                        </constraints>
+                                    </view>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVN-kQ-aQl">
+                            <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="3wa-5p-DJp"/>
+                            </constraints>
+                            <items>
+                                <barButtonItem title="▶︎" width="18" id="TcB-jY-mfs" userLabel="_playPauseItem">
+                                    <connections>
+                                        <action selector="playPauseItemDidClicked:" destination="-1" id="7Dv-AV-FcB"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem title="Item" id="AiL-Fq-Ske" userLabel="_volumeContainer"/>
+                                <barButtonItem enabled="NO" title="🔈" id="n5b-kF-Diw"/>
+                            </items>
+                        </toolbar>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="fVN-kQ-aQl" firstAttribute="leading" secondItem="Dk1-Om-f0j" secondAttribute="leading" id="2oZ-hZ-3NU"/>
+                        <constraint firstAttribute="trailing" secondItem="bCj-tP-AcC" secondAttribute="trailing" id="VUN-PA-1CY"/>
+                        <constraint firstAttribute="trailing" secondItem="fVN-kQ-aQl" secondAttribute="trailing" id="XiI-Qx-iMi"/>
+                        <constraint firstAttribute="bottom" secondItem="fVN-kQ-aQl" secondAttribute="bottom" id="ZFz-sg-deL"/>
+                        <constraint firstItem="bCj-tP-AcC" firstAttribute="top" secondItem="Dk1-Om-f0j" secondAttribute="top" id="lsk-Ku-7m0"/>
+                        <constraint firstItem="bCj-tP-AcC" firstAttribute="leading" secondItem="Dk1-Om-f0j" secondAttribute="leading" id="wnD-5X-rHZ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="414" y="405"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aED-aJ-hd6" secondAttribute="trailing" id="3kQ-0z-dpg"/>
+                <constraint firstItem="aED-aJ-hd6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6UL-39-jdA"/>
+                <constraint firstItem="Dk1-Om-f0j" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9bv-d3-YvM"/>
+                <constraint firstAttribute="bottom" secondItem="aED-aJ-hd6" secondAttribute="bottom" id="GcG-Bb-0fC"/>
+                <constraint firstAttribute="bottom" secondItem="Dk1-Om-f0j" secondAttribute="bottom" id="IoE-Yd-qdG"/>
+                <constraint firstItem="Dk1-Om-f0j" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uly-l2-eVV"/>
+                <constraint firstAttribute="trailing" secondItem="Dk1-Om-f0j" secondAttribute="trailing" id="hGW-rr-wpp"/>
+                <constraint firstItem="aED-aJ-hd6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="k92-Xp-QWK"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="pvg-wb-OFN" appends="YES" id="zha-lk-CzX"/>
+            </connections>
+            <point key="canvasLocation" x="173" y="359"/>
         </view>
+        <tapGestureRecognizer id="pvg-wb-OFN">
+            <connections>
+                <action selector="handleScreenTap:" destination="-1" id="1Mc-in-M1e"/>
+                <outlet property="delegate" destination="-1" id="B6C-Zd-H9B"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

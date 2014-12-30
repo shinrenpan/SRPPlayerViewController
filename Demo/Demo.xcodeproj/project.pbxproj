@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D775A0071A338C8800B27228 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A0061A338C8800B27228 /* AudioToolbox.framework */; };
-		D775A0081A338C9700B27228 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A0031A338C7000B27228 /* AVFoundation.framework */; };
-		D775A00A1A338CA400B27228 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A0091A338CA400B27228 /* CoreMedia.framework */; };
-		D775A00C1A338CB400B27228 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A00B1A338CB400B27228 /* CoreVideo.framework */; };
-		D775A00E1A338CC100B27228 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A00D1A338CC100B27228 /* MediaPlayer.framework */; };
-		D775A0101A338CCE00B27228 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A00F1A338CCE00B27228 /* OpenGLES.framework */; };
-		D775A0121A338CDB00B27228 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A0111A338CDB00B27228 /* QuartzCore.framework */; };
 		D775A0141A338CED00B27228 /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A0131A338CED00B27228 /* libbz2.dylib */; };
 		D775A0161A338CF900B27228 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A0151A338CF900B27228 /* libz.dylib */; };
 		D775A0181A338D0D00B27228 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D775A0171A338D0D00B27228 /* libstdc++.dylib */; };
@@ -43,13 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D775A0031A338C7000B27228 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		D775A0061A338C8800B27228 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		D775A0091A338CA400B27228 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		D775A00B1A338CB400B27228 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		D775A00D1A338CC100B27228 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		D775A00F1A338CCE00B27228 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		D775A0111A338CDB00B27228 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D775A0131A338CED00B27228 /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
 		D775A0151A338CF900B27228 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D775A0171A338D0D00B27228 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -92,13 +78,6 @@
 				D775A0181A338D0D00B27228 /* libstdc++.dylib in Frameworks */,
 				D775A0161A338CF900B27228 /* libz.dylib in Frameworks */,
 				D775A0141A338CED00B27228 /* libbz2.dylib in Frameworks */,
-				D775A0121A338CDB00B27228 /* QuartzCore.framework in Frameworks */,
-				D775A0101A338CCE00B27228 /* OpenGLES.framework in Frameworks */,
-				D775A00E1A338CC100B27228 /* MediaPlayer.framework in Frameworks */,
-				D775A00C1A338CB400B27228 /* CoreVideo.framework in Frameworks */,
-				D775A00A1A338CA400B27228 /* CoreMedia.framework in Frameworks */,
-				D775A0081A338C9700B27228 /* AVFoundation.framework in Frameworks */,
-				D775A0071A338C8800B27228 /* AudioToolbox.framework in Frameworks */,
 				D7D5F0621A2CBE3600EF8315 /* libopenssl.a in Frameworks */,
 				D7D5F0611A2CBE3600EF8315 /* libffmpeg.a in Frameworks */,
 				D7D5F0631A2CBE3600EF8315 /* libVitamio.a in Frameworks */,
@@ -122,13 +101,6 @@
 				D775A0171A338D0D00B27228 /* libstdc++.dylib */,
 				D775A0151A338CF900B27228 /* libz.dylib */,
 				D775A0131A338CED00B27228 /* libbz2.dylib */,
-				D775A0111A338CDB00B27228 /* QuartzCore.framework */,
-				D775A00F1A338CCE00B27228 /* OpenGLES.framework */,
-				D775A00D1A338CC100B27228 /* MediaPlayer.framework */,
-				D775A00B1A338CB400B27228 /* CoreVideo.framework */,
-				D775A0091A338CA400B27228 /* CoreMedia.framework */,
-				D775A0061A338C8800B27228 /* AudioToolbox.framework */,
-				D775A0031A338C7000B27228 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

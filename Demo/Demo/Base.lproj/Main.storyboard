@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://techslides.com/demos/sample-videos/small.flv" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aJI-kR-IBV" userLabel="_field">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://data.video.qiyi.com/videos/v0/20140402/02/8a/22/d62bcb70689a558f0cfa925728dc9278.f4v?key=1157cd0042f8ac44&amp;uuid=da5df8ed" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aJI-kR-IBV" userLabel="_field">
                                 <rect key="frame" x="16" y="40" width="568" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="mL2-ig-JBn"/>
