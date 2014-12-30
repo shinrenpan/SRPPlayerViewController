@@ -160,8 +160,9 @@
 - (void)mediaPlayer:(VMediaPlayer *)player setupPlayerPreference:(id)arg
 {
     player.useCache = YES;
-    
+
     [player setCacheDirectory:[self __cacheDirectory]];
+    [player setBufferSize:512*1024];
 }
 
 #pragma mark - Player Buffer
