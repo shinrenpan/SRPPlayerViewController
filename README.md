@@ -2,7 +2,7 @@
 
 基於 [Vitamio 4.2.6](https://github.com/yixia/Vitamio-iOS/releases/tag/v4.2.6) 的線上影片播放器, 支援 TV out, AirPlay.
 
-基本上我是用在我的 App [影音瀏覽器 2.0](https://itunes.apple.com/us/app/ying-yin-liu-lan-qi/id923745389?l=zh&ls=1&mt=8) 來播放 flash 影片用的.
+基本上我是用在我的 App [影音瀏覽器](https://itunes.apple.com/us/app/ying-yin-liu-lan-qi/id923745389?l=zh&ls=1&mt=8) 來播放 flash 影片用的.
 
 播放格式請參考 Vitamio [官網](https://www.vitamio.org).
 
@@ -38,14 +38,21 @@ mvc.videoURL = url;
 但是一進入播放器, 聲音的 route 會跑到耳機, 而且 google 後, 利用這個 category  
 可能會用 reject 風險, 所以目前的做法是傾向於讓 User 自己向上拖拉控制台切換 AirPlaye.
 
-`如果有解決播放器內切換 AirPlay 的做法, 歡迎告知.`
-
 ### 2. 為何不支援背景播放?
 
 因為背景時投射到 TV 的影像不會 Render, 所以我就不支援背景播放了, 如果是純聲音 (Radio App)  
-那就考慮使用背景播放跟 Remote Event 控制
+那就考慮使用背景播放跟 Remote Event 控制.
 
-`如果有解決可以在背景 Render 影片到 TV 的做法, 歡迎告知.`
+### 3. 從背景進入前景聲音跟影像不同步
+
+在模擬器不會有這問題, 但是實機會出現這個問題, 目前找不到解決方法.
+
+### 4. 播放期間切換連結設備, 畫面不是正常尺寸
+
+在裝置與外接設備之間切換, 會造成畫面尺寸異常, 目前找不到解決方法.  
+只能手動旋轉裝置後, 就會回復正常.
+
+### `以上問題如有解決方法歡迎告知`
 
 ### 其他問題請開 issue
 
