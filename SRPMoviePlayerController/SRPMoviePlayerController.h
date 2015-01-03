@@ -21,8 +21,6 @@
 // THE SOFTWARE.
 
 @import UIKit;
-@import MediaPlayer;
-@import AVFoundation;
 
 
 /**
@@ -39,15 +37,5 @@
  *  影片網址
  */
 @property (nonatomic, strong) NSURL *videoURL;
-
-
-///-----------------------------------------------------------------------------
-/// @name Class methods
-///-----------------------------------------------------------------------------
-
-/**
- *  請除 Cache
- */
-+ (void)cleanCache;
 
 @end

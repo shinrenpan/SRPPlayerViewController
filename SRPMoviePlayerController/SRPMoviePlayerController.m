@@ -20,8 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "Vitamio.h"
+
 #import "SRPMoviePlayerController.h"
+#import <IJKMediaPlayer/IJKMediaPlayer.h>
 
 
 // 外接設備用的 ViewController
@@ -44,246 +45,219 @@
 @end
 
 
-@interface SRPMoviePlayerController ()<VMediaPlayerDelegate, UIGestureRecognizerDelegate>
+@interface SRPMoviePlayerController ()
 
-@property (nonatomic, weak) IBOutlet UIView                  *toolView;
-@property (nonatomic, weak) IBOutlet UILabel                 *playTimeLabel;
-@property (nonatomic, weak) IBOutlet UISlider                *videoSeekSlider;
-@property (nonatomic, weak) IBOutlet UILabel                 *endTimeLabel;
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingView;
-@property (nonatomic, weak) IBOutlet UILabel                 *loadingLabel;
-@property (nonatomic, weak) IBOutlet UILabel                 *connectedLabel;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem         *playPauseItem;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem         *volumeContainer;
+@property (nonatomic, weak) IBOutlet UIView          *controlPanel; // 控制面板
+@property (nonatomic, weak) IBOutlet UILabel         *playTimeLabel;// 播放時間
+@property (nonatomic, weak) IBOutlet UISlider        *videoSeeker;  // 影片拖放
+@property (nonatomic, weak) IBOutlet UILabel         *endTimeLabel; // 結束時間
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *playPuseItem; // 播放 / 暫停
 
-@property (nonatomic, strong) CADisplayLink *timer;
-@property (nonatomic, strong) VMediaPlayer  *player;
-@property (nonatomic, strong) UIView        *playerView;
-@property (nonatomic, strong) UIWindow      *connectedWindow;
-@property (nonatomic, assign) long          totalVideoTime;
-@property (nonatomic, assign) BOOL          videoSeekSliderIsDragging;
-
+@property (nonatomic, strong) NSTimer  *timer;           // Timer
+@property (nonatomic, strong) UIWindow *TVWindow;        // 外接設備 Window
+@property (nonatomic, assign) BOOL     seekerDragging;   // 是否正在拖放
+@property (nonatomic, strong) id<IJKMediaPlayback>player;// Player
 @end
 
 
 @implementation SRPMoviePlayerController
 
-#pragma mark - 清除快取
-+ (void)cleanCache
-{
-    NSString *cache =
-    [NSString stringWithFormat:@"%@/Library/Caches/SRPPlayerCache", NSHomeDirectory()];
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        [[NSFileManager defaultManager]removeItemAtPath:cache error:nil];
-    });
-}
-
 #pragma mark - LifeCycle
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self __init];
+    
+    if(_videoURL)
+    {
+        [self __setup];
+    }
+    else
+    {
+        [self __showErrorMessage];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    if(_playerView)
+    if(_player)
     {
-        self.player = [VMediaPlayer sharedInstance];
+        if([self __isConnected])
+        {
+            [self __handleConnected];
+        }
         
-        [_player setupPlayerWithCarrierView:_playerView withDelegate:self];
-        [_player setDataSource:_videoURL];
-        [_player prepareAsync];
+        [_player prepareToPlay];
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self __dealloc];
-}
-
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:
-(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    // 螢幕 roate 時要調整 _VolumeContainer
-    [self __setupVolumeContainerWidth:size.width];
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [self __releaseTimer];
+    [self __removeObserver];
+    [_player shutdown];
 }
 
 - (BOOL)prefersStatusBarHidden
 {
-    // 隱藏 statusBar 的時機 = _toolView.Hidden
-    return _toolView.hidden;
-}
-
-#pragma mark - UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-       shouldReceiveTouch:(UITouch *)touch
-{
-    // 一定要設 delegate, 不然拖拉影片或是聲音, 會不小心觸發 tap,
-    // 播放影片時的 View Class 為 GLVPlayerView
-    return
-    touch.view == self.view ||
-    touch.view == _toolView ||
-    [touch.view isKindOfClass:NSClassFromString(@"GLVPlayerView")];
-}
-
-#pragma mark - VMediaPlayerDelegate
-#pragma mark Player LifeCycle
-- (void)mediaPlayer:(VMediaPlayer *)player didPrepared:(id)arg
-{
-    self.totalVideoTime = [player getDuration];
-    
-    [self __play];
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player playbackComplete:(id)arg
-{
-    [self doneItemDidClicked:nil];
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player error:(id)arg
-{
-    [self __showErrorMessage];
-}
-
-#pragma mark - Player Setting
-- (void)mediaPlayer:(VMediaPlayer *)player setupManagerPreference:(id)arg
-{
-    player.decodingSchemeHint       = VMDecodingSchemeHardware;
-    player.autoSwitchDecodingScheme = NO;
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player setupPlayerPreference:(id)arg
-{
-    player.useCache = YES;
-
-    [player setCacheDirectory:[self __cacheDirectory]];
-    [player setBufferSize:512*1024];
-}
-
-#pragma mark - Player Buffer
-- (void)mediaPlayer:(VMediaPlayer *)player bufferingStart:(id)arg
-{
-    // buffer 時, 隱藏不需要的 UI
-    _playTimeLabel.hidden   = YES;
-    _videoSeekSlider.hidden = YES;
-    _endTimeLabel.hidden    = YES;
-    _loadingView.hidden     = NO;
-    _loadingLabel.hidden    = NO;
-    _playPauseItem.enabled  = NO;
-    
-    [self __pause];
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player bufferingEnd:(id)arg
-{
-    [self __play];
+    return _controlPanel.hidden;
 }
 
 #pragma mark - IBAction
-#pragma mark Done item clicked
+#pragma mark 離開
 - (IBAction)doneItemDidClicked:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - 點擊隱藏 / 顯示 _toolView
-- (IBAction)handleScreenTap:(UITapGestureRecognizer *)sender
+#pragma mark - 隱藏 / 顯示控制面板
+- (IBAction)controlPanelDidTap:(id)sender
 {
-    _toolView.hidden = !_toolView.hidden;
+    _controlPanel.hidden = !_controlPanel.hidden;
+    
+    [self __setupTimer];
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
-
-#pragma mark - 按下播放 / 暫停
-- (IBAction)playPauseItemDidClicked:(UIBarButtonItem *)sender
+#pragma mark - 正在拖拉 slider
+- (IBAction)videoSeekerIsDragging:(UISlider *)sender
 {
+    if(![_player isPreparedToPlay])
+        return;
+
+    self.seekerDragging      = YES;
+    NSTimeInterval totalTime = [_player duration];
+    NSTimeInterval playTime  = totalTime * sender.value;
+    NSTimeInterval endTime   = totalTime - playTime;
+    _playTimeLabel.text      = [self __videoTimeToString:playTime];
+    _endTimeLabel.text       = [self __videoTimeToString:endTime];
+}
+
+#pragma mark - 拖拉 slider 結束
+- (IBAction)videoSeekerValueDidChanged:(UISlider *)sender
+{
+    if(![_player isPreparedToPlay])
+    {
+        sender.value = 0.0;
+        return;
+    }
+
+    self.seekerDragging      = NO;
+    NSTimeInterval totalTime = [_player duration];
+    NSTimeInterval seekTo    = totalTime * sender.value;
+    
+    if(seekTo >= totalTime)
+    {
+        seekTo = totalTime - 10.0;
+    }
+    else if(seekTo <= 0)
+    {
+        seekTo = 0.0;
+    }
+    
+    [_player setCurrentPlaybackTime:seekTo];
+}
+
+#pragma mark - 切換模式
+- (IBAction)modeItemDidClicked:(id)sender
+{
+    if(![_player isPreparedToPlay])
+        return;
+    
+    MPMovieScalingMode mode = [_player scalingMode];
+    mode++;
+    
+    if(mode > MPMovieScalingModeFill)
+        mode = MPMovieScalingModeNone;
+    
+    [_player setScalingMode:mode];
+}
+
+#pragma mark - 播放 / 暫停
+- (IBAction)palyPauseItemDidClicked:(id)sender
+{
+    if(![_player isPreparedToPlay])
+        return;
+    
     if([_player isPlaying])
     {
-        [self __pause];
+        [_player pause];
     }
     else
     {
-        [self __play];
+        [_player play];
     }
 }
 
-#pragma mark - _videoSeekSlider 拖拉ing
-- (IBAction)videoSeekSliderDragging:(UISlider *)sender
+#pragma mark - 後退
+- (IBAction)backItemDidClicked:(id)sender
 {
-    self.videoSeekSliderIsDragging = YES;
-    long playTime                  = _totalVideoTime * sender.value;
-    long endTime                   = _totalVideoTime - playTime;
-    _playTimeLabel.text            = [self __videoTimeToString:playTime];
-    _endTimeLabel.text             = [self __videoTimeToString:endTime];
+    if(![_player isPreparedToPlay])
+        return;
+    
+    NSTimeInterval seekTo = [_player currentPlaybackTime];
+    seekTo-=10.0;
+    if(seekTo <= 0.0)
+        seekTo = 0.0;
+    
+    [_player setCurrentPlaybackTime:seekTo];
 }
 
-#pragma mark - _videoSeekSlider 拖拉結束
-- (IBAction)videoSeekSliderValueDidChanged:(UISlider *)sender
+#pragma mark - 快轉
+- (IBAction)forwardItemDidClicked:(id)sender
 {
-    self.videoSeekSliderIsDragging = NO;
-    long seekTo                    = _totalVideoTime * sender.value;
+    if(![_player isPreparedToPlay])
+        return;
     
-    [_player seekTo:seekTo];
+    NSTimeInterval seekTo = [_player currentPlaybackTime];
+    seekTo+=10.0;
+    if(seekTo >= [_player duration])
+        seekTo = [_player duration]-10.0;
+    
+    [_player setCurrentPlaybackTime:seekTo];
 }
 
 #pragma mark - Private methods
 #pragma mark 初始設置
-- (void)__init
+- (void)__setup
 {
-    CGSize appSize = [UIScreen mainScreen].applicationFrame.size;
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [IJKFFMoviePlayerController setLogReport:NO];
     
-    [self __setupVolumeContainerWidth:appSize.width];
-    
-    _playTimeLabel.hidden   = YES;
-    _videoSeekSlider.hidden = YES;
-    _endTimeLabel.hidden    = YES;
-    _playPauseItem.enabled  = NO;
-    
-    if(!_videoURL)
-    {
-        [self __showErrorMessage];
-    }
-    else
-    {
-        [self __addObserver];
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
-        
-        self.playerView      = [[UIView alloc]init];
-        self.connectedWindow = [[UIWindow alloc]init];
-        
-        _playerView.backgroundColor  = [UIColor clearColor];
-        _playerView.autoresizingMask =
-        UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        if([self __isConnected])
-        {
-            [self __handleConnected];
-        }
-        else
-        {
-            [self __handleDisconnected];
-        }
-    }
-}
+    self.TVWindow               = [[UIWindow alloc]init];
+    self.player                 = [[IJKFFMoviePlayerController alloc]initWithContentURL:_videoURL
+                                                              withOptions:nil];
+    UIView *playerView          = [_player view];
+    playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    playerView.frame            = self.view.bounds;
+    playerView.backgroundColor  = [UIColor blackColor];
 
-#pragma mark - 離開前設置
-- (void)__dealloc
-{
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [self __releaseTimer];
-    [self __releasePlayer];
-    [self __removeObserver];
+    [self.view insertSubview:playerView atIndex:1];
+    [_player setScalingMode:MPMovieScalingModeAspectFit];
+    [self __addObserver];
 }
 
 #pragma mark - Add Observer
 - (void)__addObserver
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    [center addObserver:self selector:@selector(__playerIsPreparedToPlay:)
+                   name:IJKMediaPlaybackIsPreparedToPlayDidChangeNotification object:nil];
+    
+    [center addObserver:self selector:@selector(__playerLoadStateDidChanged:)
+                   name:IJKMoviePlayerLoadStateDidChangeNotification object:nil];
+    
+    [center addObserver:self selector:@selector(__playerPlaybackDidFinish:)
+                   name:IJKMoviePlayerPlaybackDidFinishNotification object:nil];
+    
+    [center addObserver:self selector:@selector(__playerPlaybackStateDidChanged:)
+                   name:IJKMoviePlayerPlaybackStateDidChangeNotification object:nil];
     
     // 連接設備
     [center addObserver:self selector:@selector(__handleConnected)
@@ -292,18 +266,6 @@
     // 移除連接
     [center addObserver:self selector:@selector(__handleDisconnected)
                    name:UIScreenDidDisconnectNotification object:nil];
-    
-    // 進入前景
-    [center addObserver:self selector:@selector(__handleAppWillEnterForeground)
-                   name:UIApplicationWillEnterForegroundNotification object:nil];
-
-    // 進入背景
-    [center addObserver:self selector:@selector(__handleAppDidEnterBackground)
-                   name:UIApplicationDidEnterBackgroundNotification object:nil];
-
-    // 可能有電話進來時
-    [center addObserver:self selector:@selector(__handleAudioInterruption:)
-                   name:AVAudioSessionInterruptionNotification object:nil];
 }
 
 #pragma mark - Remove Observer
@@ -312,158 +274,167 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
-#pragma mark - Handle 連接設備
+#pragma mark - Player Prepare
+- (void)__playerIsPreparedToPlay:(NSNotification *)sender
+{
+    [_player play];
+}
+
+#pragma mark - Player Load
+- (void)__playerLoadStateDidChanged:(NSNotification *)sender
+{
+    MPMovieLoadState state = [_player loadState];
+    
+    // Buffering ???
+    if(state == MPMovieLoadStateStalled)
+    {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    }
+    else
+    {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
+}
+
+#pragma mark - Player Finish
+- (void)__playerPlaybackDidFinish:(NSNotification *)sender
+{
+    NSInteger reason =
+    [[sender.userInfo valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey]integerValue];
+    
+    if(reason != MPMovieFinishReasonPlaybackEnded)
+    {
+        [self __showErrorMessage];
+    }
+}
+
+#pragma mark - Player State
+- (void)__playerPlaybackStateDidChanged:(NSNotification *)sender
+{
+    MPMoviePlaybackState state = [_player playbackState];
+    
+    switch (state)
+    {
+        case MPMoviePlaybackStatePlaying:
+            _playPuseItem.title = @"暫停";
+            [self __setupTimer];
+            break;
+        
+        case MPMoviePlaybackStatePaused:
+            _playPuseItem.title = @"播放";
+            [self __releaseTimer];
+            break;
+            
+        case MPMoviePlaybackStateStopped:
+            _playPuseItem.title = @"播放";
+            [self __releaseTimer];
+            break;
+            
+        case MPMoviePlaybackStateInterrupted:
+            break;
+            
+        case MPMoviePlaybackStateSeekingForward:
+            break;
+            
+        case MPMoviePlaybackStateSeekingBackward:
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - 是否外接設備
+- (BOOL)__isConnected
+{
+    return [UIScreen screens].count > 1;
+}
+
+#pragma mark - 處理連接設備
 - (void)__handleConnected
 {
-    [_playerView removeFromSuperview];
+    UIView *playerView           = [_player view];
+    UIScreen *screen             = [UIScreen screens].lastObject;
+    screen.overscanCompensation  = UIScreenOverscanCompensationInsetApplicationFrame;
+    ConnectedController *mvc     = [[ConnectedController alloc]init];
+    _TVWindow.rootViewController = mvc;
+    _TVWindow.screen             = screen;
+    _TVWindow.hidden             = NO;
+    mvc.view.frame               = screen.bounds;
+    playerView.frame             = screen.bounds;
     
-    _connectedLabel.hidden              = NO;
-    UIScreen *screen                    = [UIScreen screens].lastObject;
-    screen.overscanCompensation         = UIScreenOverscanCompensationInsetApplicationFrame;
-    ConnectedController *mvc            = [[ConnectedController alloc]init];
-    _connectedWindow.rootViewController = mvc;
-    _connectedWindow.screen             = screen;
-    _connectedWindow.hidden             = NO;
-    mvc.view.frame                      = screen.bounds;
-    _playerView.frame                   = screen.bounds;
-    
-    [mvc.view addSubview:_playerView];
+    [mvc.view addSubview:playerView];
 }
 
-#pragma mark - Handle 移除設備
+#pragma mark - 處理移除設備
 - (void)__handleDisconnected
 {
-    [_playerView removeFromSuperview];
+    UIView *playerView           = [_player view];
+    _TVWindow.hidden             = YES;
+    _TVWindow.screen             = nil;
+    _TVWindow.rootViewController = nil;
+    playerView.frame             = self.view.bounds;
     
-    _connectedLabel.hidden              = YES;
-    _connectedWindow.hidden             = YES;
-    _connectedWindow.screen             = nil;
-    _connectedWindow.rootViewController = nil;
-    _playerView.frame                   = self.view.bounds;
-    
-    [self.view addSubview:_playerView];
-    [self.view sendSubviewToBack:_playerView];
+    [self.view insertSubview:playerView atIndex:1];
 }
 
-#pragma mark - Handle App 進入前景
-- (void)__handleAppWillEnterForeground
+#pragma mark - 設置 Timer
+- (void)__setupTimer
 {
-    [self __play];
-}
-
-#pragma mark - Handle App 進入背景
-- (void)__handleAppDidEnterBackground
-{
-    [self __pause];
-}
-
-#pragma mark - Handle Audio 中斷
-- (void)__handleAudioInterruption:(NSNotification *)sender
-{
-    NSDictionary *info = sender.userInfo;
-    NSNumber *type = info[AVAudioSessionInterruptionTypeKey];
-    
-    // 只 handle begin, end 的話, 讓 User 手動去 play video
-    if([type integerValue] == AVAudioSessionInterruptionTypeBegan)
-    {
-        [self __pause];
-    }
-}
-
-#pragma mark - 播放
-- (void)__play
-{
-    _playTimeLabel.hidden   = NO;
-    _videoSeekSlider.hidden = NO;
-    _endTimeLabel.hidden    = NO;
-    _loadingView.hidden     = YES;
-    _loadingLabel.hidden    = YES;
-    _playPauseItem.enabled  = YES;
-    _playPauseItem.title    = @"∎∎";
-    
-    [_player start];
-    
-    if(!_timer)
-    {
-        self.timer = [CADisplayLink displayLinkWithTarget:self
-                                                 selector:@selector(__handleTimer)];
-        
-        _timer.frameInterval = 4;
-        
-        [_timer addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    }
-}
-
-#pragma mark - 暫停
-- (void)__pause
-{
-    _playPauseItem.title = @"▶︎";
-    
-    [_player pause];
     [self __releaseTimer];
-}
-
-#pragma mark - Release Player
-- (void)__releasePlayer
-{
-    [self __pause];
-    [_player reset];
-    [_player unSetupPlayer];
-    [_playerView removeFromSuperview];
     
-    self.player     = nil;
-    self.playerView = nil;
+    if(!_controlPanel.hidden)
+    {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                                                      target:self
+                                                    selector:@selector(__handelTimer:)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    }
 }
 
-#pragma mark - Handle timer
-- (void)__handleTimer
+#pragma mark - 處理 Timer
+- (void)__handelTimer:(NSTimer *)timer
 {
-    if(![_player isPlaying] || _videoSeekSliderIsDragging)
+    if(_seekerDragging)
         return;
     
-    long playTime       = [_player getCurrentPosition];
-    long endTime        = _totalVideoTime - playTime;
-    _playTimeLabel.text = [self __videoTimeToString:playTime];
-    _endTimeLabel.text  = [self __videoTimeToString:endTime];
+    NSTimeInterval totalTime = [_player duration];
+    NSTimeInterval playTime  = [_player currentPlaybackTime];
+    NSTimeInterval endTime   = totalTime - playTime;
+    _playTimeLabel.text      = [self __videoTimeToString:playTime];
+    _endTimeLabel.text       = [self __videoTimeToString:endTime];
     
-    [_videoSeekSlider setValue:(float)playTime / _totalVideoTime animated:NO];
+    [_videoSeeker setValue:playTime / totalTime animated:NO];
 }
 
 #pragma mark - Release Timer
 - (void)__releaseTimer
 {
     [_timer invalidate];
+    
     self.timer = nil;
 }
 
-#pragma mark - 返回是否連接設備
-- (BOOL)__isConnected
+#pragma mark - 將影片時間轉成 String
+- (NSString *)__videoTimeToString:(NSTimeInterval)time
 {
-    return [UIScreen screens].count > 1;
-}
-
-#pragma mark - 設置 MPVolumeView 寬
-- (void)__setupVolumeContainerWidth:(CGFloat)width
-{
-    // 左右各空 44
-    _volumeContainer.width = width - (44 * 2);
-
-    if(!_volumeContainer.customView)
+    NSInteger ti   = (NSInteger)time;
+    NSInteger hour = ti / 3600;
+    NSInteger min  = (ti / 60) % 60;
+    NSInteger sec  = ti % 60;
+    
+    NSMutableString *string = [NSMutableString string];
+    
+    if(hour > 0)
     {
-        // yep, 18.0 is magic number, 剛好置中
-        MPVolumeView *volumeView = [[MPVolumeView alloc]initWithFrame:
-                                    CGRectMake(0, 0, _volumeContainer.width, 18.0)];
-
-        // see issue #1
-        volumeView.showsRouteButton = NO;
-        _volumeContainer.customView = volumeView;
+        [string appendString:[NSString stringWithFormat:@"%ld", (long)hour]];
     }
-    else
-    {
-        // yep, 18.0 is magic number, 剛好置中
-        CGRect frame = CGRectMake(0, 0, _volumeContainer.width, 18.0);
-        _volumeContainer.customView.frame = frame;
-    }
+    
+    [string appendString:[NSString stringWithFormat:@"%02ld:", (long)min]];
+    [string appendString:[NSString stringWithFormat:@"%02ld", (long)sec]];
+    
+    return string;
 }
 
 #pragma mark - 顯示錯誤訊息
@@ -473,55 +444,16 @@
     [UIAlertController alertControllerWithTitle:@"錯誤"
                                         message:@"無法播放該影片"
                                  preferredStyle:UIAlertControllerStyleAlert];
-
+    
     UIAlertAction *cancel =
     [UIAlertAction actionWithTitle:@"確定"
                              style:UIAlertActionStyleCancel
                            handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-
+                               [self dismissViewControllerAnimated:YES completion:nil];
+                           }];
+    
     [alert addAction:cancel];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-#pragma mark - 返回 Cache 目錄
-- (NSString *)__cacheDirectory
-{
-    NSString *cache =
-    [NSString stringWithFormat:@"%@/Library/Caches/SRPPlayerCache", NSHomeDirectory()];
-    
-    if (![[NSFileManager defaultManager]fileExistsAtPath:cache]) {
-        [[NSFileManager defaultManager]createDirectoryAtPath:cache
-                                 withIntermediateDirectories:YES
-                                                  attributes:nil
-                                                       error:NULL];
-    }
-    
-    return cache;
-}
-
-#pragma mark - 將影片時間轉成 String
-- (NSString *)__videoTimeToString:(long)time
-{
-    unsigned long toSeconds, hour, min, sec;
-
-    toSeconds = time / 1000;
-    hour      = toSeconds / 3600;
-    min       = (toSeconds - hour * 3600) / 60;
-    sec       = toSeconds - hour * 3600 - min * 60;
-
-    NSMutableString *string = [NSMutableString string];
-
-    if(hour > 0)
-    {
-        [string appendString:[NSString stringWithFormat:@"%ld:", hour]];
-    }
-
-    [string appendString:[NSString stringWithFormat:@"%02ld:", min]];
-    [string appendString:[NSString stringWithFormat:@"%02ld", sec]];
-
-    return string;
 }
 
 @end

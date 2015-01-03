@@ -16,11 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://data.video.qiyi.com/videos/v0/20140402/02/8a/22/d62bcb70689a558f0cfa925728dc9278.f4v?key=1157cd0042f8ac44&amp;uuid=da5df8ed" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aJI-kR-IBV" userLabel="_field">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aJI-kR-IBV" userLabel="_field">
                                 <rect key="frame" x="16" y="40" width="568" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="mL2-ig-JBn"/>
                                 </constraints>
+                                <string key="text">http://k.youku.com/player/getFlvPath/sid/44201507261781252f465_03/st/flv/fileid/03000103025187C3138F6F0230E416AB237B8B-4D0C-7D2A-0E75-2CF3633882E3?K=178ad428f64520c3261e18cb&amp;hd=2&amp;ymovie=1&amp;myp=0&amp;ts=120&amp;ypp=2&amp;ctype=12&amp;ev=1&amp;token=6841&amp;oip=3663591661&amp;ep=diaWGkiIVskC4yLYgD8bYi60cHEKXP4J9h%2BFgNJhALkhSeC46j3QxJXGSIlCFPoZByYHFpqDqdPgGEhmYfQ3qRsQ2DqqSPrgi%2Ffm5a8gspMGZRo%2Bes%2Bit1SYSzTw</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
