@@ -5,6 +5,8 @@
 
 >這裡的 AirPlay 是指 User 手動使用內建控制面板切換 AirPlay, 而非在播放器內切換.
 
+![](README/4.png)
+
 ## 需求
 iOS 8 Later
 
