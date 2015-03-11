@@ -67,6 +67,10 @@
 {
     [super viewWillAppear:animated];
     
+    // if info.plist UIViewControllerBasedStatusBarAppearance = NO, should use statusBarHidden
+    // otherwise use prefersStatusBarHidden
+    [UIApplication sharedApplication].statusBarHidden = _controlPanel.hidden;
+
     if(_videoURL)
     {
         [self __setup];
@@ -121,6 +125,10 @@
     
     [self __setupTimer];
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    // if info.plist UIViewControllerBasedStatusBarAppearance = NO, should use statusBarHidden
+    // otherwise use prefersStatusBarHidden
+    [UIApplication sharedApplication].statusBarHidden = _controlPanel.hidden;
 }
 
 #pragma mark - 正在拖拉 slider
