@@ -2,34 +2,32 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-yellow.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LC58N7VZUST5N)
 
 
-A simply media play UIViewController base on [ijkplayer k0.4.4.1][1] without control panel.
+基於 [ijkplayer k0.4.4.1][1] 的影片播放器, 不帶控制面板.
 
 Online [Demo][2].
-
-[中文說明][3].
 
 ![](README/1.png)
 
 
-# Feature
-- TV connected support.
-- Media Format: please see [ijkplayer][4].
-- URL Protocol: please see [ijkplayer][4].
+# 特色
+- 支援外接螢幕.
+- 播放格式: 請參考 [ijkplayer][4].
+- 播放協定: 請猜考 [ijkplayer][4].
 
 
-# Installation
-Download the last compiled [release][5] version and drag into your project.
+# 安裝
+下載最後一個已經編譯完成 [release][5] 版本, 並拖進你的 Project.
 
-Also need to download compiled [IJKMediaFramework.framework][6] and drag into your project.
+並且必須下載已經編譯完成的 [IJKMediaFramework.framework][6] 同樣拖進你的 Project.
 
 
-# Usage
+# 使用
 ```objC
 SRPPlayerViewController *mvc = [[SRPPlayerViewController alloc]init];
 mvc.mediaURL = ...
 ```
 
-or subclass SRPPlayerViewController.
+或是繼承 SRPPlayerViewController.
 
 
 

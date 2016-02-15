@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		136BD04DC7790EB3F9763FE03D42828D /* SRPPlayerTVConnectViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 082CB648E80176E8C0BF58C114D8F2C8 /* SRPPlayerTVConnectViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		158958D3EE8F8E21691C1517F5D2504C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FE09A0218BCE7BF4F98C3FFF3797CFAB /* main.m */; };
+		2420F0535BE6593DC315722DBF80993A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4474A42C873BC19E98B32DE1E4C99F55 /* Main.storyboard */; };
+		438B65E08B71C3ECC56BEF591DD852B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB1E8FBD50E3F5DD0037A555BC144840 /* LaunchScreen.storyboard */; };
+		65DEB15A623D2D6491EEF851B6888523 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8DD71F4DDE5476967E4A11AFC5279 /* ViewController.m */; };
+		7DF6270E977747DFC1388CEC1226790F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D1F1CFF4403F1D8D07573438B735547 /* Assets.xcassets */; };
+		87F96EB1DB365D64137AC08630EB7E20 /* SRPPlayerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C48D2371C8318131A702A9135BC9E57 /* SRPPlayerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C40DD1677DD6F5DA4DA96FAF10ECFC5 /* SRPPlayerTVConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49CD9758901DB0E02150D330A2A75C6 /* SRPPlayerTVConnectViewController.m */; };
+		94956E597398D0D50E9199CD00C91BCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4371B3BC39A1D2150B3E6A915BC1B13 /* AppDelegate.m */; };
+		A9E2B4D2BC58072456C6E708A6AE6CCA /* SRPPlayerViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F27FA55F9BE1AE5AE52021E86D1649A /* SRPPlayerViewController.framework */; };
+		BAEE1BA0D91D5E932B3F5B3BA5063F40 /* SRPPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8AF47448B9261645769FE40AF4B74 /* SRPPlayerViewController.m */; };
+		D46AE0B538A5096B559321C4D35B0623 /* SRPPlayerViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F27FA55F9BE1AE5AE52021E86D1649A /* SRPPlayerViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D71C7E501C7242080069FFD7 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71C7E4F1C7242080069FFD7 /* IJKMediaFramework.framework */; };
+		D71C7E511C7242900069FFD7 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71C7E4F1C7242080069FFD7 /* IJKMediaFramework.framework */; };
+		EB630C3484B659A54ED07AB195745B88 /* DemoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479368EB57A6936C5A558E2E2447D288 /* DemoPlayerViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		010D0D7A033E1EF143A614912583F472 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45643D7E6B58ADB97C9BC30C7F17E34B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 510DEB2A067F5A0F2C612FE0D67516A5;
+			remoteInfo = SRPPlayerViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7B8799238E3F0921F1DC31986881D987 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D46AE0B538A5096B559321C4D35B0623 /* SRPPlayerViewController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		082CB648E80176E8C0BF58C114D8F2C8 /* SRPPlayerTVConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPPlayerTVConnectViewController.h; sourceTree = "<group>"; };
+		1CA6B12D9BB2CE88A3F6C72D9272E0BF /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3988BC88B1D933BF9745DD7E7A3FAACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		479368EB57A6936C5A558E2E2447D288 /* DemoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoPlayerViewController.m; sourceTree = "<group>"; };
+		57D22D34128C4B9CB4AC68A5E2A5D721 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6BDE078F6AEDEB77D711F1F4ECB58987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F27FA55F9BE1AE5AE52021E86D1649A /* SRPPlayerViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SRPPlayerViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C48D2371C8318131A702A9135BC9E57 /* SRPPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPPlayerViewController.h; sourceTree = "<group>"; };
+		7E94E6414D90456DE860352A1CD23572 /* DemoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoPlayerViewController.h; sourceTree = "<group>"; };
+		8BDD7CA0153020996142516AF7A0649B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8D1F1CFF4403F1D8D07573438B735547 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		91D8DD71F4DDE5476967E4A11AFC5279 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A49CD9758901DB0E02150D330A2A75C6 /* SRPPlayerTVConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPPlayerTVConnectViewController.m; sourceTree = "<group>"; };
+		A505E0269A392775F2A4E12BCF8695A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ABE57E5527D105B44B56E5BC5815DF93 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C4371B3BC39A1D2150B3E6A915BC1B13 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D71C7E4F1C7242080069FFD7 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		DFA8AF47448B9261645769FE40AF4B74 /* SRPPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPPlayerViewController.m; sourceTree = "<group>"; };
+		FE09A0218BCE7BF4F98C3FFF3797CFAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4481344802717EC175E0DCDE0E2A4475 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D71C7E501C7242080069FFD7 /* IJKMediaFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C78E0FA601DD93CD6C4F585176EB4A7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9E2B4D2BC58072456C6E708A6AE6CCA /* SRPPlayerViewController.framework in Frameworks */,
+				D71C7E511C7242900069FFD7 /* IJKMediaFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2FEAFCE0F89BC946E27B50B21ECF5210 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1CA6B12D9BB2CE88A3F6C72D9272E0BF /* Demo.app */,
+				6F27FA55F9BE1AE5AE52021E86D1649A /* SRPPlayerViewController.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45540EBF7DB88BD63E2CAD2577A55E88 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				D71C7E021C72263E0069FFD7 /* ViewControllers */,
+				D71C7E011C7226330069FFD7 /* App */,
+				D71C7E001C7226190069FFD7 /* Storyboards */,
+				D370DA5B6342AC92C51A0B436FF9A2C1 /* Supporting Files */,
+				8D1F1CFF4403F1D8D07573438B735547 /* Assets.xcassets */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		D370DA5B6342AC92C51A0B436FF9A2C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3988BC88B1D933BF9745DD7E7A3FAACB /* Info.plist */,
+				FE09A0218BCE7BF4F98C3FFF3797CFAB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D71C7E001C7226190069FFD7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FB1E8FBD50E3F5DD0037A555BC144840 /* LaunchScreen.storyboard */,
+				4474A42C873BC19E98B32DE1E4C99F55 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		D71C7E011C7226330069FFD7 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				57D22D34128C4B9CB4AC68A5E2A5D721 /* AppDelegate.h */,
+				C4371B3BC39A1D2150B3E6A915BC1B13 /* AppDelegate.m */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		D71C7E021C72263E0069FFD7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7E94E6414D90456DE860352A1CD23572 /* DemoPlayerViewController.h */,
+				479368EB57A6936C5A558E2E2447D288 /* DemoPlayerViewController.m */,
+				ABE57E5527D105B44B56E5BC5815DF93 /* ViewController.h */,
+				91D8DD71F4DDE5476967E4A11AFC5279 /* ViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F7849BB4A2FD89D5A9FD02E28A664C05 /* SRPPlayerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BDE078F6AEDEB77D711F1F4ECB58987 /* Info.plist */,
+				082CB648E80176E8C0BF58C114D8F2C8 /* SRPPlayerTVConnectViewController.h */,
+				A49CD9758901DB0E02150D330A2A75C6 /* SRPPlayerTVConnectViewController.m */,
+				7C48D2371C8318131A702A9135BC9E57 /* SRPPlayerViewController.h */,
+				DFA8AF47448B9261645769FE40AF4B74 /* SRPPlayerViewController.m */,
+			);
+			path = SRPPlayerViewController;
+			sourceTree = "<group>";
+		};
+		FDA804660B35894C597CA63D99105680 = {
+			isa = PBXGroup;
+			children = (
+				D71C7E4F1C7242080069FFD7 /* IJKMediaFramework.framework */,
+				45540EBF7DB88BD63E2CAD2577A55E88 /* Demo */,
+				2FEAFCE0F89BC946E27B50B21ECF5210 /* Products */,
+				F7849BB4A2FD89D5A9FD02E28A664C05 /* SRPPlayerViewController */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C261C3FDCB27BD7E9FBA6086ED68E563 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				136BD04DC7790EB3F9763FE03D42828D /* SRPPlayerTVConnectViewController.h in Headers */,
+				87F96EB1DB365D64137AC08630EB7E20 /* SRPPlayerViewController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		35887A0DFD2FC031FBEBF3211BE9DE89 /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A0E0BD5A3EBA75CB1AD7F6E5345187A /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				802C4B48E9D786CCC2336759C237305A /* Sources */,
+				C78E0FA601DD93CD6C4F585176EB4A7F /* Frameworks */,
+				6288B143F266F34C7484145FB035791C /* Resources */,
+				7B8799238E3F0921F1DC31986881D987 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				783221ACE21F2E7D945A4623B0320EC8 /* PBXTargetDependency */,
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = 1CA6B12D9BB2CE88A3F6C72D9272E0BF /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		510DEB2A067F5A0F2C612FE0D67516A5 /* SRPPlayerViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B51A881C68384C178D63B3F8B46ADC9 /* Build configuration list for PBXNativeTarget "SRPPlayerViewController" */;
+			buildPhases = (
+				29B0C20EE1CDCB0D50EB50F1BF5C4914 /* Sources */,
+				4481344802717EC175E0DCDE0E2A4475 /* Frameworks */,
+				C261C3FDCB27BD7E9FBA6086ED68E563 /* Headers */,
+				26CC44E04C2B7FAC554644FB5400D64C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SRPPlayerViewController;
+			productName = SRPPlayerViewController;
+			productReference = 6F27FA55F9BE1AE5AE52021E86D1649A /* SRPPlayerViewController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		45643D7E6B58ADB97C9BC30C7F17E34B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Shinren Pan";
+				TargetAttributes = {
+					35887A0DFD2FC031FBEBF3211BE9DE89 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					510DEB2A067F5A0F2C612FE0D67516A5 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = E2E3E2D4686BF75A7E9D70EA338DB7FD /* Build configuration list for PBXProject "SRPPlayerViewController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FDA804660B35894C597CA63D99105680;
+			productRefGroup = 2FEAFCE0F89BC946E27B50B21ECF5210 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				510DEB2A067F5A0F2C612FE0D67516A5 /* SRPPlayerViewController */,
+				35887A0DFD2FC031FBEBF3211BE9DE89 /* Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26CC44E04C2B7FAC554644FB5400D64C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6288B143F266F34C7484145FB035791C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DF6270E977747DFC1388CEC1226790F /* Assets.xcassets in Resources */,
+				438B65E08B71C3ECC56BEF591DD852B8 /* LaunchScreen.storyboard in Resources */,
+				2420F0535BE6593DC315722DBF80993A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29B0C20EE1CDCB0D50EB50F1BF5C4914 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C40DD1677DD6F5DA4DA96FAF10ECFC5 /* SRPPlayerTVConnectViewController.m in Sources */,
+				BAEE1BA0D91D5E932B3F5B3BA5063F40 /* SRPPlayerViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		802C4B48E9D786CCC2336759C237305A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94956E597398D0D50E9199CD00C91BCA /* AppDelegate.m in Sources */,
+				EB630C3484B659A54ED07AB195745B88 /* DemoPlayerViewController.m in Sources */,
+				65DEB15A623D2D6491EEF851B6888523 /* ViewController.m in Sources */,
+				158958D3EE8F8E21691C1517F5D2504C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		783221ACE21F2E7D945A4623B0320EC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 510DEB2A067F5A0F2C612FE0D67516A5 /* SRPPlayerViewController */;
+			targetProxy = 010D0D7A033E1EF143A614912583F472 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4474A42C873BC19E98B32DE1E4C99F55 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BDD7CA0153020996142516AF7A0649B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FB1E8FBD50E3F5DD0037A555BC144840 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A505E0269A392775F2A4E12BCF8695A9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		172DCA46C3DEFE846681629ED158D84F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinrenpan.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		26693EDE2D6FEF137AA45A3BBC15A98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BD7AE8EF2687BE990E4F06914B41DB6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = SRPPlayerViewController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinrenpan.SRPPlayerViewController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+			};
+			name = Debug;
+		};
+		D7780A99DEAA84ED7F99B57E35DCBC97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EC95649BF73F85F1A4AAB4C9F38E7E3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinrenpan.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F3F94FAA361581E5C9EBFEC28B18ACBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = SRPPlayerViewController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinrenpan.SRPPlayerViewController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A0E0BD5A3EBA75CB1AD7F6E5345187A /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				172DCA46C3DEFE846681629ED158D84F /* Debug */,
+				EC95649BF73F85F1A4AAB4C9F38E7E3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B51A881C68384C178D63B3F8B46ADC9 /* Build configuration list for PBXNativeTarget "SRPPlayerViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD7AE8EF2687BE990E4F06914B41DB6E /* Debug */,
+				F3F94FAA361581E5C9EBFEC28B18ACBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2E3E2D4686BF75A7E9D70EA338DB7FD /* Build configuration list for PBXProject "SRPPlayerViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7780A99DEAA84ED7F99B57E35DCBC97 /* Debug */,
+				26693EDE2D6FEF137AA45A3BBC15A98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 45643D7E6B58ADB97C9BC30C7F17E34B /* Project object */;
+}
