@@ -38,5 +38,5 @@ mvc.mediaURL = ...
 [2]: https://appetize.io/app/kekyum7wkdtpgn0er6kdnwztk0 "Demo"
 [3]: README_TW.md
 [4]: https://github.com/Bilibili/ijkplayer "ijkplayer"
-[5]: https://github.com/shinrenpan/SRPPlayerViewController/releases "Release"
+[5]: https://github.com/shinrenpan/SRPPlayerViewController/releases/download/1.0.0/SRPPlayerViewController.framework.zip "Release"
 [6]: https://www.dropbox.com/s/f5s5pggji98p4hi/IJKMediaFramework.framework_k0.4.4.1.zip?dl=0 "IJKMediaFramework"
