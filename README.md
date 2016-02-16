@@ -18,9 +18,7 @@ Online [Demo][2].
 
 
 # Installation
-Download the last compiled [release][5] version and drag into your project.
-
-Also need to download compiled [IJKMediaFramework.framework][6] and drag into your project.
+Download the compiled [SRPPlayerViewController.framework][5] and [IJKMediaFramework.framework][6] (Both support i386, x86_64, armv7, arm64) and drag into your project.
 
 
 # Usage
