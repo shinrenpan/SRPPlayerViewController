@@ -16,9 +16,7 @@ Online [Demo][2].
 
 
 # 安裝
-下載最後一個已經編譯完成 [release][5] 版本, 並拖進你的 Project.
-
-並且必須下載已經編譯完成的 [IJKMediaFramework.framework][6] 同樣拖進你的 Project.
+下載已編譯的 [SRPPlayerViewController.framework][5] 和 [IJKMediaFramework.framework][6] (支援 i386, x86_64, armv7, arm64) 並拖入你的 Project.
 
 
 # 使用
