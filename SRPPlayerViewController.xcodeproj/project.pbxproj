@@ -16,37 +16,14 @@
 		87F96EB1DB365D64137AC08630EB7E20 /* SRPPlayerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C48D2371C8318131A702A9135BC9E57 /* SRPPlayerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C40DD1677DD6F5DA4DA96FAF10ECFC5 /* SRPPlayerTVConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49CD9758901DB0E02150D330A2A75C6 /* SRPPlayerTVConnectViewController.m */; };
 		94956E597398D0D50E9199CD00C91BCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4371B3BC39A1D2150B3E6A915BC1B13 /* AppDelegate.m */; };
-		A9E2B4D2BC58072456C6E708A6AE6CCA /* SRPPlayerViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F27FA55F9BE1AE5AE52021E86D1649A /* SRPPlayerViewController.framework */; };
 		BAEE1BA0D91D5E932B3F5B3BA5063F40 /* SRPPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8AF47448B9261645769FE40AF4B74 /* SRPPlayerViewController.m */; };
-		D46AE0B538A5096B559321C4D35B0623 /* SRPPlayerViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F27FA55F9BE1AE5AE52021E86D1649A /* SRPPlayerViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D71C7E501C7242080069FFD7 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71C7E4F1C7242080069FFD7 /* IJKMediaFramework.framework */; };
 		D71C7E511C7242900069FFD7 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71C7E4F1C7242080069FFD7 /* IJKMediaFramework.framework */; };
+		D76810D61C734B1A001A029A /* SRPPlayerViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F27FA55F9BE1AE5AE52021E86D1649A /* SRPPlayerViewController.framework */; };
+		D76810D81C734B25001A029A /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76810D71C734B25001A029A /* VideoToolbox.framework */; };
+		D76810DA1C734B39001A029A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D76810D91C734B39001A029A /* libz.tbd */; };
 		EB630C3484B659A54ED07AB195745B88 /* DemoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479368EB57A6936C5A558E2E2447D288 /* DemoPlayerViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		010D0D7A033E1EF143A614912583F472 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 45643D7E6B58ADB97C9BC30C7F17E34B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 510DEB2A067F5A0F2C612FE0D67516A5;
-			remoteInfo = SRPPlayerViewController;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		7B8799238E3F0921F1DC31986881D987 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D46AE0B538A5096B559321C4D35B0623 /* SRPPlayerViewController.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		082CB648E80176E8C0BF58C114D8F2C8 /* SRPPlayerTVConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPPlayerTVConnectViewController.h; sourceTree = "<group>"; };
@@ -66,6 +43,8 @@
 		ABE57E5527D105B44B56E5BC5815DF93 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C4371B3BC39A1D2150B3E6A915BC1B13 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D71C7E4F1C7242080069FFD7 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		D76810D71C734B25001A029A /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		D76810D91C734B39001A029A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DFA8AF47448B9261645769FE40AF4B74 /* SRPPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPPlayerViewController.m; sourceTree = "<group>"; };
 		FE09A0218BCE7BF4F98C3FFF3797CFAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,7 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9E2B4D2BC58072456C6E708A6AE6CCA /* SRPPlayerViewController.framework in Frameworks */,
+				D76810DA1C734B39001A029A /* libz.tbd in Frameworks */,
+				D76810D81C734B25001A029A /* VideoToolbox.framework in Frameworks */,
+				D76810D61C734B1A001A029A /* SRPPlayerViewController.framework in Frameworks */,
 				D71C7E511C7242900069FFD7 /* IJKMediaFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +146,8 @@
 		FDA804660B35894C597CA63D99105680 = {
 			isa = PBXGroup;
 			children = (
+				D76810D91C734B39001A029A /* libz.tbd */,
+				D76810D71C734B25001A029A /* VideoToolbox.framework */,
 				D71C7E4F1C7242080069FFD7 /* IJKMediaFramework.framework */,
 				45540EBF7DB88BD63E2CAD2577A55E88 /* Demo */,
 				2FEAFCE0F89BC946E27B50B21ECF5210 /* Products */,
@@ -194,12 +177,10 @@
 				802C4B48E9D786CCC2336759C237305A /* Sources */,
 				C78E0FA601DD93CD6C4F585176EB4A7F /* Frameworks */,
 				6288B143F266F34C7484145FB035791C /* Resources */,
-				7B8799238E3F0921F1DC31986881D987 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				783221ACE21F2E7D945A4623B0320EC8 /* PBXTargetDependency */,
 			);
 			name = Demo;
 			productName = Demo;
@@ -302,14 +283,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		783221ACE21F2E7D945A4623B0320EC8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 510DEB2A067F5A0F2C612FE0D67516A5 /* SRPPlayerViewController */;
-			targetProxy = 010D0D7A033E1EF143A614912583F472 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4474A42C873BC19E98B32DE1E4C99F55 /* Main.storyboard */ = {

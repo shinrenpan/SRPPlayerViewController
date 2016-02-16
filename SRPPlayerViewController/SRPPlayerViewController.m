@@ -110,8 +110,10 @@
         return;
     }
     
+    [IJKFFMoviePlayerController setLogReport:NO];
+    
     _tvConnectWindow = [[UIWindow alloc]init];
-    _player = [[IJKAVMoviePlayerController alloc]initWithContentURL:_mediaURL];
+    _player = [[IJKFFMoviePlayerController alloc]initWithContentURL:_mediaURL withOptions:nil];
     
     UIView *playerView          = [_player view];
     playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
