@@ -1,7 +1,7 @@
 //
 //  SRPPlayerViewController.h
 //  SRPPlayerViewController
-//  Version 1.0.2
+//  Version 1.0.3
 //
 //  Created by Shinren Pan on 2016/2/15.
 //  Copyright © 2016年 Shinren Pan. All rights reserved.
