@@ -166,7 +166,8 @@
     
     if(_delegate && [_delegate respondsToSelector:@selector(playerController:finishReason:)])
     {
-        NSInteger reason = [sender.object integerValue];
+        NSInteger reason =
+        [sender.userInfo[IJKMPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
         
         [_delegate playerController:self finishReason:reason];
     }
