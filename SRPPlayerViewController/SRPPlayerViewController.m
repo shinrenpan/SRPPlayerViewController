@@ -131,8 +131,8 @@
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
-    [center addObserver:self selector:@selector(__playerPlaybackDidFinishReasonUserInfoKey:)
-                   name:IJKMPMoviePlayerPlaybackDidFinishReasonUserInfoKey object:nil];
+    [center addObserver:self selector:@selector(__playerPlaybackDidFinishNotification:)
+                   name:IJKMPMoviePlayerPlaybackDidFinishNotification object:nil];
     
     [center addObserver:self selector:@selector(__playerPlaybackStateDidChangeNotification:)
                    name:IJKMPMoviePlayerPlaybackStateDidChangeNotification object:nil];
@@ -160,7 +160,7 @@
 }
 
 #pragma mark player handle
-- (void)__playerPlaybackDidFinishReasonUserInfoKey:(NSNotification *)sender
+- (void)__playerPlaybackDidFinishNotification:(NSNotification *)sender
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
