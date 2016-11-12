@@ -19,8 +19,9 @@ fi
 # 4
 # Build the framework for device and for simulator (using
 # all needed architectures).
-xcodebuild -target "${FRAMEWORK_NAME}" -configuration Release -arch arm64 -arch armv7 only_active_arch=no defines_module=yes -sdk iphoneos
-xcodebuild -target "${FRAMEWORK_NAME}" -configuration Release -arch i386 -arch x86_64 only_active_arch=no VALID_ARCHS="i386 x86_64" -sdk iphonesimulator
+# enable bitcode 參考 https://medium.com/@heitorburger/static-libraries-frameworks-and-bitcode-6d8f784478a9#.xq8m65w7y
+xcodebuild -target "${FRAMEWORK_NAME}" -configuration Release -arch arm64 -arch armv7 only_active_arch=no defines_module=yes -sdk iphoneos -OTHER_CFLAGS="-fembed-bitcode"
+xcodebuild -target "${FRAMEWORK_NAME}" -configuration Release -arch i386 -arch x86_64 only_active_arch=no VALID_ARCHS="i386 x86_64" -sdk iphonesimulator -OTHER_CFLAGS="-fembed-bitcode"
 
 # 5
 # Remove .framework file if exists on Desktop from previous run.
