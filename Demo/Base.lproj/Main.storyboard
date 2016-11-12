@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wKQ-S9-QC0">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wKQ-S9-QC0">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,11 +15,10 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8" placeholder="Imput media url" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="h4K-Tb-Dsv">
-                                <rect key="frame" x="0.0" y="280" width="600" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://devstreaming.apple.com/videos/wwdc/2016/510ndmh9wkcvzneegv2/510/hls_vod_mvp.m3u8" placeholder="Imput media url" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="h4K-Tb-Dsv">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="qyL-R9-hvd"/>
                                 </constraints>
@@ -29,7 +29,7 @@
                                 </connections>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="h4K-Tb-Dsv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="EpA-bp-qIl"/>
                             <constraint firstItem="h4K-Tb-Dsv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XyX-cy-vdK"/>
@@ -47,20 +47,19 @@
             </objects>
             <point key="canvasLocation" x="1239" y="387"/>
         </scene>
-        <!--Title-->
+        <!--DemoPlayerViewController-->
         <scene sceneID="2jc-T7-laM">
             <objects>
-                <viewController id="0CK-AQ-9KW" customClass="DemoPlayerViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="DemoPlayerViewController" storyboardIdentifier="DemoPlayerViewController" title="DemoPlayerViewController" id="0CK-AQ-9KW" customClass="DemoPlayerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="I1u-mN-Ikh"/>
                         <viewControllerLayoutGuide type="bottom" id="gJK-dI-Fit"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZmW-0N-aEw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-oW-Ha5">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem title="Back 10 secs" id="RWG-G4-AKB">
                                         <connections>
@@ -82,14 +81,14 @@
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gJK-dI-Fit" firstAttribute="top" secondItem="aQf-oW-Ha5" secondAttribute="bottom" id="JrX-2D-sfd"/>
                             <constraint firstItem="aQf-oW-Ha5" firstAttribute="leading" secondItem="ZmW-0N-aEw" secondAttribute="leading" id="NHI-qc-45B"/>
                             <constraint firstAttribute="trailing" secondItem="aQf-oW-Ha5" secondAttribute="trailing" id="yrx-UT-7DI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="8GY-lv-HYz">
+                    <navigationItem key="navigationItem" id="8GY-lv-HYz">
                         <barButtonItem key="rightBarButtonItem" title="Change scale" id="A19-ef-LnY">
                             <connections>
                                 <action selector="changeScaleClicked:" destination="0CK-AQ-9KW" id="lBm-ls-Eb9"/>
