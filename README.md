@@ -2,9 +2,7 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-yellow.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LC58N7VZUST5N)
 
 
-A simply media play UIViewController base on [ijkplayer k0.4.4.1][1] without control panel.
-
-Online [Demo][2].
+A simply media play UIViewController base on [ijkplayer k0.7.4][1] without control panel.
 
 [中文說明][3].
 
@@ -34,9 +32,8 @@ or subclass SRPPlayerViewController.
 
 
 
-[1]: https://github.com/Bilibili/ijkplayer/releases/tag/k0.4.4.1 "k0.4.4.1"
-[2]: https://appetize.io/app/kekyum7wkdtpgn0er6kdnwztk0 "Demo"
+[1]: https://github.com/Bilibili/ijkplayer/releases/tag/k0.7.4 "k0.7.4"
 [3]: README_TW.md
 [4]: https://github.com/Bilibili/ijkplayer "ijkplayer"
-[5]: https://github.com/shinrenpan/SRPPlayerViewController/releases/download/1.0.1/SRPPlayerViewController.framework.zip "Release"
-[6]: https://www.dropbox.com/s/f5s5pggji98p4hi/IJKMediaFramework.framework_k0.4.4.1.zip?dl=0 "IJKMediaFramework"
+[5]: https://github.com/shinrenpan/SRPPlayerViewController/releases/download/1.0.4/SRPPlayerViewController.framework.zip "Release"
+[6]: https://www.dropbox.com/s/wqmc9zzyzrvel0s/IJKMediaFramework.framewor_k0.7.4.zip?dl=0 "IJKMediaFramework"
