@@ -1,9 +1,5 @@
 //
-//  SRPPlayerViewController.m
-//  SRPPlayerViewController
-//
-//  Created by Shinren Pan on 2016/2/15.
-//  Copyright © 2016年 Shinren Pan. All rights reserved.
+//  Copyright (c) 2017年 shinren.pan@gmail.com All rights reserved.
 //
 
 #import "SRPPlayerViewController.h"
@@ -113,7 +109,9 @@
     [IJKFFMoviePlayerController setLogReport:NO];
     
     _tvConnectWindow = [[UIWindow alloc]init];
-    _player = [[IJKFFMoviePlayerController alloc]initWithContentURL:_mediaURL withOptions:nil];
+    
+    IJKFFOptions *options = [IJKFFOptions optionsByDefault];
+    _player = [[IJKFFMoviePlayerController alloc]initWithContentURL:_mediaURL withOptions:options];
     
     UIView *playerView          = [_player view];
     playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

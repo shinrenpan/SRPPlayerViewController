@@ -27,6 +27,7 @@ Carthage/
 
 ### Other framework ###
 *.framework
+*.a
 
 ### Vendor folder ###
 Vendor/

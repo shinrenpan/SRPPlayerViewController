@@ -1,10 +1,5 @@
 //
-//  SRPPlayerViewController.h
-//  SRPPlayerViewController
-//  Version 1.0.3
-//
-//  Created by Shinren Pan on 2016/2/15.
-//  Copyright © 2016年 Shinren Pan. All rights reserved.
+//  Copyright (c) 2017年 shinren.pan@gmail.com All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -78,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Media URL.
  */
-@property (nonatomic, strong, nonnull) NSURL *mediaURL;
+@property (nonatomic, strong) NSURL *mediaURL;
 
 /**
  *  Delegation.
