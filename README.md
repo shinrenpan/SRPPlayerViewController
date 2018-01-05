@@ -14,7 +14,7 @@ A simply media play UIViewController base on [ijkplayer k0.7.4][1] without contr
 
 
 ## Compile
-- Follow [ijkplayer-builder][2] to build **IJKMediaFramework.framework, libssl.a, libcrypto.a**, then drag them into ijkplayer folder. 
+- Follow [ijkplayer-builder][2] to build (ijkplayer k0.7.4) **IJKMediaFramework.framework, libssl.a, libcrypto.a**, then drag them into ijkplayer folder. 
 
 ![](README/1.png)
 
