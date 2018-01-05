@@ -12,7 +12,7 @@
 
 
 ## 編譯
-- 依照 [ijkplayer-builder][2] 先編譯出 **IJKMediaFramework.framework, libssl.a, libcrypto.a**, 再拖到 ijkplayer 目錄. 
+- 依照 [ijkplayer-builder][2] 先編譯 (ijkplayer k0.7.4) 出 **IJKMediaFramework.framework, libssl.a, libcrypto.a**, 再拖到 ijkplayer 目錄. 
 
 ![](README/1.png)
 
